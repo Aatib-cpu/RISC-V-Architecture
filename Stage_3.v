@@ -40,8 +40,8 @@ reg signed [31:0] Address;
 always@(*)
 	 begin
         //Initializing Values
-	    Is_Branch_Taken = 0;
-	    Alu_Out_EX = 0;
+	Is_Branch_Taken = 0;
+	Alu_Out_EX = 0;
         Sign_Op1 = Operand1_DEU_EX_Fwd; Sign_Op2 = Operand2_DEU_EX_Fwd;
         Sign_Op1_ACU = Operand1_ACU_EX_Fwd; Sign_Op2_ACU = Operand2_ACU_EX;
         
@@ -49,12 +49,12 @@ always@(*)
         Address = Sign_Op1_ACU + Sign_Op2_ACU;
         Address_EX = (I_Type_JAL_R_EX?(Address&(32'hFFFFE)):(Address));
         
-	    case (Alu_Ctrl_EX)
-		5'b00000: Alu_Out_EX = Sign_Op1 + Sign_Op2;                                  //R_Type I_Type ADD  //S Type 
-        5'b01000: Alu_Out_EX = Sign_Op1 + (~Sign_Op2) + 1;                           //R_Type I_Type SUB
-		5'b00001: Alu_Out_EX = Operand1_DEU_EX_Fwd << Operand2_DEU_EX_Fwd[4:0];                            //R_Type I_Type SLL
-		5'b00010: Alu_Out_EX = (Sign_Op1<Sign_Op2)?1:0;                              //R_Type I_Type SLT Set Less Than
-		5'b00011: Alu_Out_EX = (Operand1_DEU_EX_Fwd<Operand2_DEU_EX_Fwd)?1:0;				              //R_type I_Type SLTU Set Less Than Unsigned
+	case (Alu_Ctrl_EX)
+		5'b00000: Alu_Out_EX = Sign_Op1 + Sign_Op2;				//R_Type I_Type ADD  //S Type 
+        	5'b01000: Alu_Out_EX = Sign_Op1 + (~Sign_Op2) + 1;			//R_Type I_Type SUB
+		5'b00001: Alu_Out_EX = Operand1_DEU_EX_Fwd << Operand2_DEU_EX_Fwd[4:0];	//R_Type I_Type SLL
+		5'b00010: Alu_Out_EX = (Sign_Op1<Sign_Op2)?1:0;                        	//R_Type I_Type SLT Set Less Than
+		5'b00011: Alu_Out_EX = (Operand1_DEU_EX_Fwd<Operand2_DEU_EX_Fwd)?1:0;	//R_type I_Type SLTU Set Less Than Unsigned
 		5'b00100: Alu_Out_EX = Operand1_DEU_EX_Fwd^Operand2_DEU_EX_Fwd;							          //R_Type I_Type XOR
 		5'b00101: Alu_Out_EX = Operand1_DEU_EX_Fwd >> Operand2_DEU_EX_Fwd[4:0];    						  //R_Type I_Type SRL
 		5'b01101: Alu_Out_EX = Sign_Op1 >>> Operand2_DEU_EX_Fwd[4:0];								  //R_Type I_Type SRA
@@ -62,14 +62,14 @@ always@(*)
 		5'b00111: Alu_Out_EX = Operand1_DEU_EX_Fwd & Operand2_DEU_EX_Fwd;						          //R_Type I_Type AND
 		
 		//B Type (Branching)
-		5'b10000: Is_Branch_Taken = (Sign_Op1==Sign_Op2);                //beq
-		5'b10001: Is_Branch_Taken = (Sign_Op1!=Sign_Op2);                //bne
-		5'b10100: Is_Branch_Taken = (Sign_Op1<Sign_Op2);                 //blt
-		5'b10101: Is_Branch_Taken = ((Sign_Op1>=Sign_Op2));              //bge 
-		5'b10110: Is_Branch_Taken = (Operand1_DEU_EX_Fwd<Operand2_DEU_EX_Fwd);                 //bltu
-		5'b10111: Is_Branch_Taken = (Operand1_DEU_EX_Fwd>=Operand2_DEU_EX_Fwd);                //bgeu
+		5'b10000: Is_Branch_Taken = (Sign_Op1==Sign_Op2);                	//beq
+		5'b10001: Is_Branch_Taken = (Sign_Op1!=Sign_Op2);                	//bne
+		5'b10100: Is_Branch_Taken = (Sign_Op1<Sign_Op2);                 	//blt
+		5'b10101: Is_Branch_Taken = ((Sign_Op1>=Sign_Op2));              	//bge 
+		5'b10110: Is_Branch_Taken = (Operand1_DEU_EX_Fwd<Operand2_DEU_EX_Fwd);	//bltu
+		5'b10111: Is_Branch_Taken = (Operand1_DEU_EX_Fwd>=Operand2_DEU_EX_Fwd);	//bgeu
 		default : Is_Branch_Taken = I_Type_JAL_R_EX||J_Type_EX;
-		endcase    
+	endcase    
 	end
 	
 /*always@(*) begin
