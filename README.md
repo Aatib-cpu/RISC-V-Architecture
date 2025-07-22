@@ -1,4 +1,4 @@
-# RISC V
+# RISC V Overview
 RISC-V is an open-source processor architecture designed to be simple, flexible, and free to use. It follows the RISC (Reduced Instruction Set Computing) model, using a small set of instructions for efficient performance. Created at the University of California, Berkeley, RISC-V can be used in everything from small devices like sensors to large systems like servers. Its open nature means anyone can study, modify, or build with it without licensing fees. This makes RISC-V popular for education, research, and product development, encouraging innovation in hardware and software design.
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISC_families.png" alt="logo" style="width: 70%;">
@@ -15,7 +15,22 @@ RV32I includes a total of 47 instructions, but a core set of 37 instructions (ex
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISCV_37_instructions.png" alt="logo" style="width: 80%;">
 
-Except for R-type instructions, all other instruction formats include one operand embedded within the instruction itself, which is used to obtain an immediate value. To form a 32-bit immediate, different alignment and extension techniques are applied depending on the instruction type. For signed operations, the immediate is sign-extended using the most significant bit (MSB), while for unsigned operations, it is zero-extended.
+Except for R-type instructions, all other instruction formats include one operand embedded within the instruction itself, which is used to obtain an immediate value.
+>_NOTE:_ To form a 32-bit immediate, different alignment and extension techniques are applied depending on the instruction type. For signed operations, the immediate is sign-extended using the most significant bit (MSB), while for unsigned operations, it is zero-extended.
+
+Here are the alignments to obtain the 32 bit immediate from instruction in different instruction format. Remember the "sign or zero extension" is done on the basis of instruction opcode.
+
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_i.png" alt="logo" style="width: 80%;">
+  
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_i_shift.png" alt="logo" style="width: 80%;">
+
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_s.png" alt="logo" style="width: 80%;">
+
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_u.png" alt="logo" style="width: 80%;">
+   
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_j.png" alt="logo" style="width: 80%;">
+
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_b.png" alt="logo" style="width: 80%;">
 
 ## Design of (RV-32I ISA) RISC-V Processor on Verilog HDL
 
