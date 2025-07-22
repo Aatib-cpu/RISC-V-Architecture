@@ -18,7 +18,7 @@ RV32I includes a total of 47 instructions, but a core set of 37 instructions (ex
 Except for R-type instructions, all other instruction formats include one operand embedded within the instruction itself, which is used to obtain an immediate value.
 >_NOTE:_ To form a 32-bit immediate, different alignment and extension techniques are applied depending on the instruction type. For signed operations, the immediate is sign-extended using the most significant bit (MSB), while for unsigned operations, it is zero-extended.
 
-Here are the alignments to obtain the 32 bit immediate from instruction in different instruction format. Remember the "sign or zero extension" is done on the basis of instruction opcode.
+Here are the alignments to obtain the 32 bit immediate from instruction in different instruction format like I type, I type shift, S type, U type, J type and B type. Remember the "sign or zero extension" is done on the basis of instruction opcode.
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_i.png" alt="logo" style="width: 80%;">
   
