@@ -3,11 +3,22 @@ RISC-V is an open-source processor architecture designed to be simple, flexible,
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISC_families.png" alt="logo" style="width: 70%;">
 
-RISC-V has four core instruction formats: R, I, S, and U. Additionally, there are two sub-formats: SB and UJ, commonly referred to as B-type and J-type, respectively. They are named this way because the B-type shares the same instruction format as the S-type, and the J-type shares the same format as the U-type. This image shows the instuction encoding of RV32I:
+# RV32I ISA
+RISC-V has <mark>**four core instruction formats: R, I, S, & U**</mark>. Additionally, there are <mark>**two sub-formats: SB & UJ**</mark>, commonly referred to as B-type and J-type, respectively. They are named this way because the B-type shares the same instruction format as the S-type, and the J-type shares the same format as the U-type. Please refer this for complete understanding of RV32I ISA and other attributes:- 
+<a href="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/rvalp.pdf" style="background-color: orange; padding: 2px 4px; text-decoration: none; color: white; font-weight: bold;">
+RISC V Official Manual
+</a>
+
+This image shows the instuction encoding of RV32I:
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISC_base_ISA.png" alt="logo" style="width: 70%;">
 
-In each instruction format, the 32-bit instruction is divided into fields that define the operation and the operands. The opcode, funct3, and funct7 fields determine the operation to be executed, while the remaining bits specify the operands involved. In RV32I, there are 32 general-purpose registers, each 32 bits wide, named x0 to x31. Among these, special-purpose registers exist—x0 is hardwired to zero and cannot be modified, while the program counter (PC) holds the address of the next instruction to be executed. Following tabels describe all registers with their aliases based on their conventional uses.
+In each instruction format, the 32-bit instruction is divided into fields that define the operation and the operands. The <mark>**opcode**, **funct3**, and **funct7**</mark> fields determine the operation to be executed, while the remaining bits specify the operands involved. 
+
+<p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISCV_37_instructions_Encoding.png" alt="logo" style="width: 80%;">
+
+In RV32I, there are **32 general-purpose registers**, each 32 bits wide, named **x0** to **x31**. Among these, special-purpose registers exist—x0 is hardwired to zero and cannot be modified, while the program counter (PC) holds the address of the next instruction to be executed. Following tabels describe all registers with their aliases based on their conventional uses.
+>***NOTE:*** All signed operation in RV32I are done in 2's compliment form. So all value in registers and memories are in 2's complement.
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/Registers.png" alt="logo" style="width: 50%;">
 
@@ -32,8 +43,13 @@ Here are the alignments to obtain the 32 bit immediate from instruction in diffe
 
 <p align="center"> <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/imm_b.png" alt="logo" style="width: 80%;">
 
-## Design of (RV-32I ISA) RISC-V Processor on Verilog HDL
+# Our Implementation of RV32I
+Our aim was to design an RV32I processor for error-prone applications, so we incorporated several new blocks to address various hazards in existing RISC V architecture.  
+**Pipeline Management:**
 
+**Fowarding Unit:**
+
+## Architecture
 <img src="https://github.com/Aatib-cpu/RISC-V-Architecture/blob/main/RISC_V_Architecture.excalidraw.png" alt="logo" style="width: 100%;">
 
 Feature list:
